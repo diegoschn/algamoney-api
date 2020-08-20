@@ -61,16 +61,10 @@ public class CategoriaResource {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<?> excluir(@PathVariable Long id){
-        Categoria categoriaId = categoriaRepository.findOne(id);
-        if(categoriaId==null){
-            return ResponseEntity.notFound().build();
-        }else{
-            categoriaRepository.delete(id);
-            return ResponseEntity.status(HttpStatus.NO_CONTENT)
-                    .build();
-        }
+    public void excluir(@PathVariable Long id){
+        categoriaRepository.delete(id);
     }
+
 }
 
 
