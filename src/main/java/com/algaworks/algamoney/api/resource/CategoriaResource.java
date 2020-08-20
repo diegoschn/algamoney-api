@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import javax.xml.ws.Response;
 import java.util.List;
 
@@ -39,7 +40,7 @@ public class CategoriaResource {
 
 
     @PostMapping
-    public ResponseEntity<Categoria> cadastrar(@RequestBody Categoria categoria){
+    public ResponseEntity<Categoria> cadastrar(@Valid @RequestBody Categoria categoria){
         Categoria categoriaSalva = categoriaService.salvar(categoria);
         return ResponseEntity.status(HttpStatus.CREATED)
                 .body(categoriaSalva);
