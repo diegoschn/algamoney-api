@@ -14,7 +14,7 @@ public class LancamentoService {
     @Autowired
     private LancamentoRepository lancamentoRepository;
 
-    Autowired
+    @Autowired
     private PessoaRepository pessoaRepository;
 
 
