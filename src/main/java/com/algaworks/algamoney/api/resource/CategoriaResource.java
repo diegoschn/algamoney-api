@@ -6,6 +6,7 @@ import com.algaworks.algamoney.api.service.CategoriaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -24,11 +25,13 @@ public class CategoriaResource {
     private CategoriaService categoriaService;
 
     @GetMapping
+    @PreAuthorize("hasAuthority('ROLE_PESQUISAR_CATEGORIA') and #oauth2.hasScope('read')")
     public List<Categoria> listar(){
         return categoriaRepository.findAll();
     }
 
     @GetMapping("/{id}")
+    @PreAuthorize("hasAuthority('ROLE_PESQUISAR_CATEGORIA') and #oauth2.hasScope('read')")
     public ResponseEntity<Categoria> buscar(@PathVariable Long id){
         Categoria categoriaEncontrada = categoriaRepository.findOne(id);
         if(categoriaEncontrada!=null){
@@ -40,6 +43,7 @@ public class CategoriaResource {
 
 
     @PostMapping
+    @PreAuthorize("hasAuthority('ROLE_CADASTRAR_CATEGORIA') and #oauth2.hasScope('write')")
     public ResponseEntity<Categoria> cadastrar(@Valid @RequestBody Categoria categoria){
         Categoria categoriaSalva = categoriaService.salvar(categoria);
         return ResponseEntity.status(HttpStatus.CREATED)
