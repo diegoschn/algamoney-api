@@ -83,7 +83,5 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
         return new CustomTokenEnhancer();
     }
 
-    public BCryptPasswordEncoder passwordEncoder(){
-        return new BCryptPasswordEncoder();
-    }
+
 }
