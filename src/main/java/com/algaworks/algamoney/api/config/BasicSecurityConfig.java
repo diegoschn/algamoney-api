@@ -30,7 +30,6 @@ public class BasicSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     public void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers("/categorias").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .httpBasic()
@@ -40,7 +39,7 @@ public class BasicSecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     @Bean
-    private PasswordEncoder passwordEncoder() {
+    public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
 
